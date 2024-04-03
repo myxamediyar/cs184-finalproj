@@ -5,7 +5,7 @@ layout: default
 
 # CrushFX: Soft body compression for crumple zone simulation
 
-**Team members:** Aniketh Prasad, Rishi Khare, Mukhamediyar Kudaikulov, Alson Chan
+**Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
 ## Problem Description
 
