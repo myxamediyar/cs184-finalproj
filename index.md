@@ -58,6 +58,7 @@ Objects included: Our “teapot” example will be a soda can, however, we will 
 ## Resources
 
 - Deal II framework: https://www.dealii.org/current/doxygen/deal.II/step_18.html
+
   Here is how the Deal.II library can be used:
   - Mesh Generation: Deal.II offers robust mesh generation capabilities, allowing for the creation of     complex geometries suitable for simulating the deformation of objects like cans. It supports mesh refinement strategies that can focus computational resources on areas of interest, such as the regions undergoing crushing.
   - Finite Element Solvers: Deal.II provides a suite of finite element solvers for solving a variety of partial differential equations, including those governing the mechanical behavior of deformable bodies. These solvers can be adapted to model the deformation of materials under external forces, such as those experienced during crushing.
