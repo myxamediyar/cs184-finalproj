@@ -34,7 +34,7 @@ In conducting analysis with our simulation framework for can crumpling, we aim t
 - **Deformation Patterns:** What are the characteristic deformation patterns exhibited by the can during crumpling? We seek to analyze the distribution of strain and displacement throughout the can's structure and identify any recurring deformation modes or failure mechanisms.
 
 
-### Customizations features:
+### Customization/features:
 - **Amount of force:** the user should be able to modify the amount of pressure exerted on the mesh
 Directions of force: the user can customize the direction of force applied to the object (not just from top-down in the hydraulic press manner)
 - **Material of Object:** Different material properties should have different responses to forces
