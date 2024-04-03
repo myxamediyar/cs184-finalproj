@@ -1,35 +1,43 @@
 ---
-title: Home
-layout: home
+title: CS 184 Project Proposal
+layout: default
 ---
 
-This is a *bare-minimum* template to create a Jekyll site that uses the [Just the Docs] theme. You can easily set the created site to be published on [GitHub Pages] – the [README] file explains how to do that, along with other details.
+# CrushFX: Soft body compression for crumple zone simulation
 
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^1] And you will be able to deploy your local build to a different platform than GitHub Pages.
+**Team members:** Aniketh Prasad, Rishi Khare, Mukhamediyar Kudaikulov, Alson Chan
 
-More specifically, the created site:
+## Problem Description
 
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
+We aim to develop a soft body polygon mesh deformation simulator capable of customizing the force amount and direction applied. This project is intended to analyze crumple zones of everyday objects, crucial for consumer safety, particularly in car crash simulations. The simulations will also provide "hydraulic press" style animations to demonstrate mesh deformation over time under constant pressure.
 
-Other than that, you're free to customize sites that you create with this template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
+## Goals and Deliverables
 
-[Browse our documentation][Just the Docs] to learn more about how to use this theme.
+### Baseline Deliverable:
+Our key deliverables include:
+- Probabilistically modeling soft body compression via mathematical pressure (not hard-coded).
+- Animating compression over a series of time steps.
+- Displaying crumple zones of the polygon mesh.
 
-To get started with creating a site, simply:
+### Customizations:
+- **Amount of Force:** Users can modify the pressure exerted on the mesh.
+- **Directions of Force:** Users can customize the force direction applied to the object.
+- **Objects Included:** We will use a soda can as our "teapot" example, including car meshes and other objects.
+- **Speed of Animation:** Users can adjust the playback speed of the video (frames/second).
 
-1. click "[use this template]" to create a GitHub repository
-2. go to Settings > Pages > Build and deployment > Source, and select GitHub Actions
+### Extensions of the project:
+- Stylistic backgrounds for video renders.
+- Generating a heatmap to visualize crumple zones prone to deformation.
+- 3D simulation via NeRF from 2D snapshots of the compression animation.
 
-If you want to maintain your docs in the `docs` directory of an existing project repo, see [Hosting your docs from an existing project repo](https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo) in the template README.
+## Schedule
 
-----
+- **Week 1:** Complete mesh transformation.
+- **Week 2:** Add support for custom force amounts and animation rendering.
+- **Week 3:** Finalize GUI layout for customizing force vectors/amounts.
+- **Week 4:** Complete video generations and add other polygon meshes for compression.
 
-[^1]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
+## Resources
 
-[Just the Docs]: https://just-the-docs.github.io/just-the-docs/
-[GitHub Pages]: https://docs.github.com/en/pages
-[README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[Jekyll]: https://jekyllrb.com
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use this template]: https://github.com/just-the-docs/just-the-docs-template/generate
+- [Deal II framework](https://www.dealii.org/current/doxygen/deal.II/step_18.html)
+
