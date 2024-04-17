@@ -8,10 +8,10 @@ layout: default
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
 
-**Slides link:** https://docs.google.com/presentation/d/1dUNogIycKB2LvxmcyCh_iG_rNrrFzwdjxUTlK2wJFA4/edit?usp=sharing
+[**Slides link**](https://docs.google.com/presentation/d/1dUNogIycKB2LvxmcyCh_iG_rNrrFzwdjxUTlK2wJFA4/edit?usp=sharing)
 
 
-**Video link:** https://drive.google.com/file/d/1fhrD-eqZeU7lFNIZL7pBSrFi52CqsTPQ/view?usp=sharing
+[**Video link**](https://drive.google.com/file/d/1fhrD-eqZeU7lFNIZL7pBSrFi52CqsTPQ/view?usp=sharing)
 
 
 Unlike we initially proposed in the proposal, we decided to implement mesh deformation in Unity. When writing the proposal, we had initially imagined using OpenGL/C++; however, we found that Unity offers a variety of mesh customization options which would be very helpful for our project. We implemented procedural mesh generation based on vertices and triangles in order to customize both the number of triangles and the shape of triangles which compose a 3D shape. From this custom mesh object, we implemented deformation by modifying the positions of the vertices of the mesh. For this milestone, we decided to trigger timesteps in deformation using user feedback with mouse clicks in our script, which can be applied to any 3D object in Unity and applies a top-down crushing effect on a mesh. Notably, the effect seems to work well with the default Capsule shape in Unity, and we theorize that this is because the Capsule shape includes many more triangles, vertices, and faces than simpler objects, such as cylinders, which allows for more vertices to move over the course of the deformation.
