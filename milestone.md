@@ -3,7 +3,7 @@ title: CS 184 Project Milestone Writeup
 layout: default
 ---
 
-# CrushFX: Soft body compression for crumple zone simulation
+# CrushFX: Project Milestone Writeup
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
