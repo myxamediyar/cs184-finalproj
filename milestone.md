@@ -6,7 +6,11 @@ layout: default
 # CrushFX: Project Milestone Writeup
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
+
+
 **Slides link:** https://docs.google.com/presentation/d/1dUNogIycKB2LvxmcyCh_iG_rNrrFzwdjxUTlK2wJFA4/edit?usp=sharing
+
+
 **Video link:** https://drive.google.com/file/d/1fhrD-eqZeU7lFNIZL7pBSrFi52CqsTPQ/view?usp=sharing
 
 
