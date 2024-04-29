@@ -122,21 +122,21 @@ Here we decided to use $f(x) = \frac{x}{\sqrt{c + x^2}}$ as the clamping functio
 
 As a side note, modifying this function can significantly change the behavior of the animation and achieve some interesting results. By using $f(x) = \sin(cx)$, we get this funny bobbing cube: 
 
-![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/md-1.png?raw=true)
+![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/gif-bob.fig?raw=true)
 
 #### <strong>Addressing Feedback Loop Errors:</strong>
 However, we quickly realized that this method made the animation look really jagged when combined with the deformation logic. The issue here was that the code made our clamped residuals be processed by the clamping function yet again, to only get enlarged by the applied forces. Any attempt to change the force starting values failed yet again. We realized that the root cause of the problem was that code workflow continually performed a feedback loop (see below), compressing and immediately enlarging the residual vectors in every frame, causing it to jitter:
-![feedback-1](https://myxamediyar.github.io/cs184-finalproj/md-2.png?raw=true)
+![feedback-1](https://myxamediyar.github.io/cs184-finalproj/md-1.png?raw=true)
 
 To combat this, we decided to use two sets of vertices: an array of vertices for the force deformation and another for displaying purposes. The display vertices were simply clamped down versions of the deformed vertices. This approach helped us maintain the smoothness of the animation because the feedback loop would only apply distortions to the deformed vertices array, and the display vertices array would clamp the ever growing magnitudes of the deformed vertices. This helped us get rid of the jaggedness, and helped us control the contribution of the force on the animation. See the updated logical feedback loop in the diagram below.
 
-![feedback-2](https://myxamediyar.github.io/cs184-finalproj/md-3.png?raw=true)
+![feedback-2](https://myxamediyar.github.io/cs184-finalproj/md-2.png?raw=true)
 
 
 #### <strong>Identical Vertex Group Mapping</strong>
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
 
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-4.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-3.png?raw=true)
 
 #### <strong>Custom Meshes and GameObjects:</strong>
 When directly modifying the meshes of GameObjects, we ran into the problem that the approach was too simplistic and looked too linear to look realistic, particularly for the default shapes in Unity which have a fixed minimal number of vertices. We experimented with custom procedural cubes and spheres (source), though the resources online referenced children objects for each face with separate mesh colliders. Significant refactoring allowed for a unified cube mesh object with tunable side length, and intricate meshes with more vertices and shorter edge lengths experienced more randomness. Additionally, we experimented with upsampling the meshes via Catmull-Clark subdivision on pre-existing mesh objects and Unity assets to create more intricate meshes and randomness in deformation, but this came with the issues of deforming materials and also introduced more complexity and lag when running the animation.
