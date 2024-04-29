@@ -79,23 +79,23 @@ In these videos, the object is being controlled by using WASD keys to apply forc
 
 
 Metallic Ball
-![Metallic Ball](https://myxamediyar.github.io/cs184-finalproj/sm-5.png?raw=true)
+![Metallic Ball](https://myxamediyar.github.io/cs184-finalproj/Aluminium.gif?raw=true)
 
 
 Bubble
-![Bubble](https://myxamediyar.github.io/cs184-finalproj/sm-6.png?raw=true)
+![Bubble](https://myxamediyar.github.io/cs184-finalproj/Bubble.gif?raw=true)
 
 
 Bouncy
-![Bouncy](https://myxamediyar.github.io/cs184-finalproj/sm-7.png?raw=true)
+![Bouncy](https://myxamediyar.github.io/cs184-finalproj/Bouncy.gif?raw=true)
 
 
 Can Crushed Downwards Plastic Deformation
-![Can Crushed Downwards Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm-8.png?raw=true)
+![Can Crushed Downwards Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/CanCrushDown.gif?raw=true)
 
 
 Can Crushed Left Plastic Deformation
-![Can Crushed Left Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm-9.png?raw=true)
+![Can Crushed Left Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/CanCrushLeft.gif?raw=true)
 
 
 ## Approach 2: Direct Mesh Transformation
