@@ -2,8 +2,8 @@
   <!-- LaTeX Rendering OFF in MarkDown -->
 {% elsif site.latex == "mathjax" %}
   <!-- Use MathJax to Render LaTeX in MarkDown -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% elsif site.latex == "katex" %}
   <!-- Use KaTeX to Render LaTeX in MarkDown -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"
@@ -19,8 +19,8 @@
         // • auto-render specific keys, e.g.:
         delimiters: [
           { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false },
-          { left: '\\(', right: '\\)', display: false },
+          { left: '$', right: '$', display: true },
+          { left: '\\(', right: '\\)', display: true },
           { left: '\\[', right: '\\]', display: true }
         ],
         // • rendering keys, e.g.:
