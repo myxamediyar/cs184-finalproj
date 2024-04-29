@@ -142,31 +142,31 @@ To add support for dynamic and multi-axis forces, we decided to introduce a forc
 ### Results:
 
 Barrel asset, standard downward force
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-5.png?raw=true)
+![demobarrel.gif](https://myxamediyar.github.io/cs184-finalproj/demobarrel.gifraw=true)
 
 
 Soda can asset, after 1 iteration of Catmull-Clark subdivision - more realistic:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-6.png?raw=true)
+![colacandemo.gif](https://myxamediyar.github.io/cs184-finalproj/colacandemo.gif?raw=true)
 
 
 Soda can asset (default) - poor deformation:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-7.png?raw=true)
+![can-no-catmul.gif](https://myxamediyar.github.io/cs184-finalproj/can-no-catmul.gif?raw=true)
 
 
 Cube mesh with 50 vertices per side, mid-animation force direction change via WASD keys:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-8.png?raw=true)
+![cubeaxisdeform.gif](https://myxamediyar.github.io/cs184-finalproj/cubeaxisdeform.gif?raw=true)
 
 
 Cube mesh with 20 vertices per side:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-9.png?raw=true)
+![20sidedcube.gif](https://myxamediyar.github.io/cs184-finalproj/20sidedcube.gif?raw=true)
 
 
 Cube mesh with 10 vertices per side:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-10.png?raw=true)
+![10sidedcube.gif](https://myxamediyar.github.io/cs184-finalproj/10sidedcube.gif?raw=true)
 
 
 Default Unity cube - poor deformation:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-11.png?raw=true)
+![defaultcube.gif](https://myxamediyar.github.io/cs184-finalproj/defaultcube.gif?raw=true)
 
 
 
@@ -176,13 +176,13 @@ In this project, we learned about simulating soft-body physics within the Unity 
 
 ## References/assets
 - HW 4: ClothSim
-- Unity Mesh API: https://docs.unity3d.com/ScriptReference/Mesh.html
-- Soda can assets in Unity:
-  - https://assetstore.unity.com/packages/3d/cola-can-96659
-  - https://polyhaven.com/a/Barrel_01 
-- Sebastian Lague’s guide to procedural mesh generation in Unity: https://www.youtube.com/watch?v=QN39W020LqU&list=PLFt_AvWsXl0cONs3T0By4puYy6GM22ko8 
+- Unity Mesh API: [Script Link](https://docs.unity3d.com/ScriptReference/Mesh.html)
+- Cam and Barrel assets in Unity:
+  - [Can](https://assetstore.unity.com/packages/3d/cola-can-96659)
+  - [Barrel](https://polyhaven.com/a/Barrel_01)
+- Sebastian Lague’s guide to procedural mesh generation in Unity: [YouTube video](https://www.youtube.com/watch?v=QN39W020LqU&list=PLFt_AvWsXl0cONs3T0By4puYy6GM22ko8)
   - Adjusted his classes to fit our deformation model by unifying the mesh into one MeshCollider, instead     of six separate meshes for each face
-- Catmull-Clark in Unity: https://assetstore.unity.com/packages/tools/modeling/catmull-clark-mesh-subdivision-95479
+- Catmull-Clark in Unity: [Asset Link](https://assetstore.unity.com/packages/tools/modeling/catmull-clark-mesh-subdivision-95479)
 
 
 
