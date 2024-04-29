@@ -6,7 +6,7 @@ layout: default
 # CrushFX: Soft-Body Compression & Mesh Deformation
 
 [Slides](https://docs.google.com/presentation/d/1NoxSTbQp4BNTOff8CfkKxsZ1njp6daJ6/edit#slide=id.p1),
-[Video]()
+[Video](https://drive.google.com/file/d/1glPN4V4pkoSZeqvW6W-VwHUQWYk90NvV/view?usp=sharing)
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
