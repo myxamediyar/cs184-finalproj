@@ -29,6 +29,7 @@ However, since we are only using vertices as point-masses, hollow objects will c
 Here is a diagram showing the intuition behind this design:
 
 ![Figure 1](https://myxamediyar.github.io/cs184-finalproj/sm-1.png?raw=true)
+
 Figure 1: By connecting neighbors up to the nth, more internal springs exist to maintain structural stability.
 
 While this method may not be optimal for modeling every mesh, it is a mesh independent approach which has displayed admissible results.
@@ -46,6 +47,7 @@ To prevent over-deformation, we ensure that the springs do not compress past a f
 After building out the above components, we were able to simulate elastic collisions for 3D meshes. To expand this for plastic deformation, we modified our deformation correction algorithm. In the case that a spring does exceed its “elastic limit”, we modify the rest-length of the spring based on Hooke’s stress-strain laws to dynamically update the spring’s new rest length when a spring’s behavior is plastic. 
 
 ![Figure 2](https://myxamediyar.github.io/cs184-finalproj/sm-2.png?raw=true)
+
 Figure 2: Stress-Strain Curve of a Typical Metal
 
 
@@ -54,6 +56,7 @@ After the point-masses’ new positions have been calculated, we use the mapping
 
 
 ![Figure 3](https://myxamediyar.github.io/cs184-finalproj/sm-3.png?raw=true)
+
 Figure 3: Unity mesh.recalculateNormals() flaws
 
 To fix this, we built a very simple but sufficient algorithm to recalculate the normals seamlessly. This algorithm iterates over the vertices of a mesh, merging duplicate vertices based on their hash codes while updating the triangles to maintain seamless connectivity. After merging, it recalculates the normals of the merged vertices, then assigns these recalculated normals back to the mesh while restoring the original triangles.
@@ -63,6 +66,7 @@ To fix this, we built a very simple but sufficient algorithm to recalculate the 
 In order to observe forces applied in different directions other than gravity, we decided to create our simulation in a zero-gravity environment with interactivity through WASD keys. Pressing a direction key will add an acceleration to the mesh in the direction of the key. Then, by enclosing the mesh within four walls with colliders, we can move the object around and witness its reaction to collisions on all sides of the mesh. In addition, prior to starting the simulation, the user can input the parameters of the spring-mass system and the desired level of bending. 
 
 ![Figure 4](https://myxamediyar.github.io/cs184-finalproj/sm-4.png?raw=true)
+
 Figure 4: The simulation set up in Unity
 
 
