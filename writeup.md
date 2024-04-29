@@ -19,7 +19,7 @@ In the direct mesh deformation approach, we implemented a real-time object crush
 
 ### Technical Approach:
 
-#### Initialization and Setup:
+#### <strong>Initialization and Setup:</strong>
 The first step was to create our point masses and springs on a given mesh component. 
 
 Our first major roadblock was dealing with the Unity mesh system. Unity uses a simple triangle mesh to represent all 3D objects. Through this mesh component, we only have access to the list of vertices and the list of triangles represented through triplets of vertex indices. To create a spring-mass system to work with this mesh, we created a PointMass class and Spring class. During initialization, the script retrieves the mesh data from the attached MeshFilter component and processes it to identify vertices and triangles. It creates PointMass and Spring objects based on the mesh geometry, establishing a mapping between mesh vertices and point masses. 
@@ -34,22 +34,22 @@ Figure 1: By connecting neighbors up to the nth, more internal springs exist to 
 While this method may not be optimal for modeling every mesh, it is a mesh independent approach which has displayed admissible results.
 
 
-#### Collision Handling:
+#### <strong>Collision Handling:</strong>
 Collision detection is implemented using raycasting to prevent mesh penetration and ensure collision-free movement. Each point mass stores its previous and current position. A ray is drawn from the previous position to the current position. We then check if this ray intersects with any primitives within the distance the point is traveling. If it does collide, we set the point-masses’ current position to be its previous position.
 
 
-#### Deformation Constraint:
+#### <strong>Deformation Constraint:</strong>
 To prevent over-deformation, we ensure that the springs do not compress past a fixed percentage of its rest length. In the case that point-masses are too far apart or too close together, we calculate the appropriate correction vector and add it to the point-masses.
 
 
-#### Plastic Deformation:
+#### <strong>Plastic Deformation:</strong>
 After building out the above components, we were able to simulate elastic collisions for 3D meshes. To expand this for plastic deformation, we modified our deformation correction algorithm. In the case that a spring does exceed its “elastic limit”, we modify the rest-length of the spring based on Hooke’s stress-strain laws to dynamically update the spring’s new rest length when a spring’s behavior is plastic. 
 
 ![Figure 2](https://myxamediyar.github.io/cs184-finalproj/sm-2.png?raw=true)
 Figure 2: Stress-Strain Curve of a Typical Metal
 
 
-#### Model Update:
+#### <strong>Model Update:</strong>
 After the point-masses’ new positions have been calculated, we use the mapping of point-mass to vertex created during the initialization step to reflect these changes. In order to ensure Unity’s lighting engine works as intended, we must recalculate the new normals of each triangle within the mesh. Unity’s built in UpdateNormal() mesh function was not satisfactory for this project as it prioritizes efficiency and lacks any means of refinement or smoothing, resulting in a not so smooth sphere. Meshes sometimes don't share all vertices. For example, a vertex at a UV seam is split into two vertices, so the RecalculateNormals function creates normals that are not smooth at the UV seam.
 
 
@@ -104,7 +104,7 @@ Can Crushed Left Plastic Deformation
 With this approach, we directly accessed the underlying mesh structure of the object and recalculated the positions of the mesh’s vertices. Unity has robust Mesh functionality, which allows for mesh collision and rendering. The basic idea that we started with was a top-down force direction (i.e. a uniform force along the Y-direction). This way, we defined a downward force vector from the centroid of the mesh’s vertices, and an adjustable radius of impact, such that vertices within the radius from the centroid are affected more to simulate direct impact. As the force from the centroid gets applied onto the objects, the centroid gets recalculated, thus shifts down, and the process repeats for subsequent frames.
 
 
-#### Position Perturbation Clamping:
+#### <strong>Position Perturbation Clamping:<strong>
 The problem that we came across during the testing was the unbounded additive force causing the vertices to fly off the object’s shape significantly. Initial attempts to lower the force values failed, as the force would over time become unstable. To mitigate, we decided to use a clamping function.
 
 Since we realized that simply lowering the force across time steps did not give a favorable output, we kept track of the original positions of vectors and calculated the residual value between the new positions and original positions: \hat{r} = \hat{v}_{\text{new}} - \hat{v}_{\text{original}}. Then, we generate a perturbation factor to limit the amount of change between the new and original vectors by first apply a clamping function f(x) to the residual vector’s norm \| \mathbf{\hat{r}} \|. Then, this new perturbation factor is applied to the maximum deviation amount (set by the user) to adjust the amount of change to apply to the vertex original positions. 
@@ -115,7 +115,7 @@ As a side note, modifying this function can significantly change the behavior of
 
 ![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/md-1.png?raw=true)
 
-#### Addressing Feedback Loop Errors:
+#### <strong>Addressing Feedback Loop Errors:</strong>
 However, we quickly realized that this method made the animation look really jagged when combined with the deformation logic. The issue here was that the code made our clamped residuals be processed by the clamping function yet again, to only get enlarged by the applied forces. Any attempt to change the force starting values failed yet again. We realized that the root cause of the problem was that code workflow continually performed a feedback loop (see below), compressing and immediately enlarging the residual vectors in every frame, causing it to jitter:
 ![feedback-1](https://myxamediyar.github.io/cs184-finalproj/md-2.png?raw=true)
 
@@ -123,19 +123,16 @@ To combat this, we decided to use two sets of vertices: an array of vertices for
 
 ![feedback-2](https://myxamediyar.github.io/cs184-finalproj/md-3.png?raw=true)
 
-Identical Vertex Group Mapping
-Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
-
 
 #### <strong>Identical Vertex Group Mapping</strong>
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
 
 ![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-4.png?raw=true)
 
-#### Custom Meshes and GameObjects:
+#### <strong>Custom Meshes and GameObjects:</strong>
 When directly modifying the meshes of GameObjects, we ran into the problem that the approach was too simplistic and looked too linear to look realistic, particularly for the default shapes in Unity which have a fixed minimal number of vertices. We experimented with custom procedural cubes and spheres (source), though the resources online referenced children objects for each face with separate mesh colliders. Significant refactoring allowed for a unified cube mesh object with tunable side length, and intricate meshes with more vertices and shorter edge lengths experienced more randomness. Additionally, we experimented with upsampling the meshes via Catmull-Clark subdivision on pre-existing mesh objects and Unity assets to create more intricate meshes and randomness in deformation, but this came with the issues of deforming materials and also introduced more complexity and lag when running the animation.
 
-### Final Additions:
+### <strong>Final Additions:</strong>
 As a final touch to deformation simulations, we have added a mapping of random deviation vectors to display vectors to distort the shape a bit more and add noise during the deformation animation, as would be expected in a real crushing. The API for identical vertex grouping also helped prevent the formation of gaps.
 
 To add support for dynamic and multi-axis forces, we decided to introduce a force direction vector instead of the hard coded effects in the Y-values. The force direction was expressed as a vector, which helped us filter out the forces accordingly by using the inner product of residual vectors with force/deformation unitary vectors. We also used linear algebraic transformation to enable the user to select the axis of deformation dynamically. This was done by using filtering binary vectors which helped isolate the entries in vectors that would need to be affected. To add interactivity,  we added the ability for users to dynamically adjust the axis of deformation using WASD, and also start the animation/reset the animation to its original state using the mouse buttons.
