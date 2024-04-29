@@ -179,9 +179,7 @@ Cube mesh with 10 vertices per side:
 
 
 Default Unity cube - poor deformation:
-![defaultcube.gif](https://myxamediyar.github.io/cs184-finalproj/defaultcube.gif?raw=true)
-
-
+<img src="https://myxamediyar.github.io/cs184-finalproj/defaultcube.gif?raw=true" alt="Description" width="300">
 
 ## What We Learned
 In this project, we learned about simulating soft-body physics within the Unity game engine by exploring and tinkering with the Unity Mesh and collision systems. In the spring mass system approach, we gained insight into representing soft bodies as collections of interconnected point masses and springs, allowing for realistic deformations and dynamics. We also acquired knowledge on efficiently organizing and processing vertex data of a mesh to interact with the spring-mass system and enabling plasticity. In the direct mesh deformation approach, we experimented with the fluidity of animation and difficulty in modifying intricate mesh vertex positions. Additionally, we explored techniques for handling collisions, enhancing the realism of the soft-body simulation. Lastly, we practiced incorporating mesh manipulation functionalities to create interactive and visually compelling soft-body simulations. 
