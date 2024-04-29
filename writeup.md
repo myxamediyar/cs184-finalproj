@@ -151,7 +151,7 @@ To add support for dynamic and multi-axis forces, we decided to introduce a forc
 ### Results:
 
 Barrel asset, standard downward force
-![demobarrel.gif](https://myxamediyar.github.io/cs184-finalproj/demobarrel.gifraw=true)
+![demobarrel.gif](https://myxamediyar.github.io/cs184-finalproj/demobarrel.gif?raw=true)
 
 
 Soda can asset, after 1 iteration of Catmull-Clark subdivision - more realistic:
@@ -167,7 +167,7 @@ Cube mesh with 50 vertices per side, mid-animation force direction change via WA
 
 
 Cube mesh with 20 vertices per side:
-![20sidedcube.gif](https://myxamediyar.github.io/cs184-finalproj/20sidedcubegif.gif?raw=true)
+![20sidedcube.gif](https://myxamediyar.github.io/cs184-finalproj/20sidecubegif.gif?raw=true)
 
 
 Cube mesh with 10 vertices per side:
