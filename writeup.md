@@ -196,9 +196,12 @@ In this project, we learned about simulating soft-body physics within the Unity 
 
 
 ## Contributions
-Mukhamediyar Kudaikulov: Background research, mesh modeling, direct mesh deformation model and custom direction/force amount modifications, applying direct mesh deformation model to custom meshes, mesh subdivision
-Rishi Khare: Project ideation + direction, background research, Unity mesh modeling, direct mesh deformation model, applying direct mesh deformation model to custom meshes, procedural mesh generation, early setup work in spring mass
-Aniketh Prasad: Background research, spring mass in Unity, spring mass system plasticity modification, applying spring mass system to custom meshes and GameObjects, procedural mesh generation
-Alson Chan: Background research, seamless mesh normal calculation algorithm, interactivity ideation, demo video editing, presentation
+- Mukhamediyar Kudaikulov: Background research, mesh modeling, direct mesh deformation model and custom direction/force amount modifications, applying direct mesh deformation model to custom meshes, mesh subdivision
+
+- Rishi Khare: Project ideation + direction, background research, Unity mesh modeling, direct mesh deformation model, applying direct mesh deformation model to custom meshes, procedural mesh generation, early setup work in spring mass
+
+- Aniketh Prasad: Background research, spring mass in Unity, spring mass system plasticity modification, applying spring mass system to custom meshes and GameObjects, procedural mesh generation
+
+- Alson Chan: Background research, seamless mesh normal calculation algorithm, interactivity ideation, demo video editing, presentation
 
 
