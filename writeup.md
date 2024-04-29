@@ -28,7 +28,7 @@ However, since we are only using vertices as point-masses, hollow objects will c
 
 Here is a diagram showing the intuition behind this design:
 
-![Figure 1](https://myxamediyar.github.io/cs184-finalproj/sm1.png?raw=true)
+![Figure 1](https://myxamediyar.github.io/cs184-finalproj/sm-1.png?raw=true)
 Figure 1: By connecting neighbors up to the nth, more internal springs exist to maintain structural stability.
 
 While this method may not be optimal for modeling every mesh, it is a mesh independent approach which has displayed admissible results.
@@ -45,7 +45,7 @@ To prevent over-deformation, we ensure that the springs do not compress past a f
 #### Plastic Deformation:
 After building out the above components, we were able to simulate elastic collisions for 3D meshes. To expand this for plastic deformation, we modified our deformation correction algorithm. In the case that a spring does exceed its “elastic limit”, we modify the rest-length of the spring based on Hooke’s stress-strain laws to dynamically update the spring’s new rest length when a spring’s behavior is plastic. 
 
-![Figure 2](https://myxamediyar.github.io/cs184-finalproj/sm2.png?raw=true)
+![Figure 2](https://myxamediyar.github.io/cs184-finalproj/sm-2.png?raw=true)
 Figure 2: Stress-Strain Curve of a Typical Metal
 
 
@@ -53,7 +53,7 @@ Figure 2: Stress-Strain Curve of a Typical Metal
 After the point-masses’ new positions have been calculated, we use the mapping of point-mass to vertex created during the initialization step to reflect these changes. In order to ensure Unity’s lighting engine works as intended, we must recalculate the new normals of each triangle within the mesh. Unity’s built in UpdateNormal() mesh function was not satisfactory for this project as it prioritizes efficiency and lacks any means of refinement or smoothing, resulting in a not so smooth sphere. Meshes sometimes don't share all vertices. For example, a vertex at a UV seam is split into two vertices, so the RecalculateNormals function creates normals that are not smooth at the UV seam.
 
 
-![Figure 3](https://myxamediyar.github.io/cs184-finalproj/sm3.png?raw=true)
+![Figure 3](https://myxamediyar.github.io/cs184-finalproj/sm-3.png?raw=true)
 Figure 3: Unity mesh.recalculateNormals() flaws
 
 To fix this, we built a very simple but sufficient algorithm to recalculate the normals seamlessly. This algorithm iterates over the vertices of a mesh, merging duplicate vertices based on their hash codes while updating the triangles to maintain seamless connectivity. After merging, it recalculates the normals of the merged vertices, then assigns these recalculated normals back to the mesh while restoring the original triangles.
@@ -62,7 +62,7 @@ To fix this, we built a very simple but sufficient algorithm to recalculate the 
 ### Interactivity:
 In order to observe forces applied in different directions other than gravity, we decided to create our simulation in a zero-gravity environment with interactivity through WASD keys. Pressing a direction key will add an acceleration to the mesh in the direction of the key. Then, by enclosing the mesh within four walls with colliders, we can move the object around and witness its reaction to collisions on all sides of the mesh. In addition, prior to starting the simulation, the user can input the parameters of the spring-mass system and the desired level of bending. 
 
-![Figure 4](https://myxamediyar.github.io/cs184-finalproj/sm4.png?raw=true)
+![Figure 4](https://myxamediyar.github.io/cs184-finalproj/sm-4.png?raw=true)
 Figure 4: The simulation set up in Unity
 
 
@@ -79,23 +79,23 @@ In these videos, the object is being controlled by using WASD keys to apply forc
 
 
 Metallic Ball
-![Metallic Ball](https://myxamediyar.github.io/cs184-finalproj/sm5.png?raw=true)
+![Metallic Ball](https://myxamediyar.github.io/cs184-finalproj/sm-5.png?raw=true)
 
 
 Bubble
-![Bubble](https://myxamediyar.github.io/cs184-finalproj/sm6.png?raw=true)
+![Bubble](https://myxamediyar.github.io/cs184-finalproj/sm-6.png?raw=true)
 
 
 Bouncy
-![Bouncy](https://myxamediyar.github.io/cs184-finalproj/sm7.png?raw=true)
+![Bouncy](https://myxamediyar.github.io/cs184-finalproj/sm-7.png?raw=true)
 
 
 Can Crushed Downwards Plastic Deformation
-![Can Crushed Downwards Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm8.png?raw=true)
+![Can Crushed Downwards Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm-8.png?raw=true)
 
 
 Can Crushed Left Plastic Deformation
-![Can Crushed Left Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm9.png?raw=true)
+![Can Crushed Left Plastic Deformation](https://myxamediyar.github.io/cs184-finalproj/sm-9.png?raw=true)
 
 
 ## Approach 2: Direct Mesh Transformation
@@ -113,15 +113,15 @@ Here we decided to use f(x) = \frac{x}{\sqrt{c + x^2}} as the clamping function,
 
 As a side note, modifying this function can significantly change the behavior of the animation and achieve some interesting results. By using f(x) = \sin(cx), we get this funny bobbing cube: 
 
-![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/md-1.png?raw=true)
 
 #### Addressing Feedback Loop Errors:
 However, we quickly realized that this method made the animation look really jagged when combined with the deformation logic. The issue here was that the code made our clamped residuals be processed by the clamping function yet again, to only get enlarged by the applied forces. Any attempt to change the force starting values failed yet again. We realized that the root cause of the problem was that code workflow continually performed a feedback loop (see below), compressing and immediately enlarging the residual vectors in every frame, causing it to jitter:
-![feedback-1](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![feedback-1](https://myxamediyar.github.io/cs184-finalproj/md-2.png?raw=true)
 
 To combat this, we decided to use two sets of vertices: an array of vertices for the force deformation and another for displaying purposes. The display vertices were simply clamped down versions of the deformed vertices. This approach helped us maintain the smoothness of the animation because the feedback loop would only apply distortions to the deformed vertices array, and the display vertices array would clamp the ever growing magnitudes of the deformed vertices. This helped us get rid of the jaggedness, and helped us control the contribution of the force on the animation. See the updated logical feedback loop in the diagram below.
 
-![feedback-2](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![feedback-2](https://myxamediyar.github.io/cs184-finalproj/md-3.png?raw=true)
 
 Identical Vertex Group Mapping
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
@@ -130,7 +130,7 @@ Unity stores a copy for each identical vector, so a random change in one would n
 #### <strong>Identical Vertex Group Mapping</strong>
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
 
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-4.png?raw=true)
 
 #### Custom Meshes and GameObjects:
 When directly modifying the meshes of GameObjects, we ran into the problem that the approach was too simplistic and looked too linear to look realistic, particularly for the default shapes in Unity which have a fixed minimal number of vertices. We experimented with custom procedural cubes and spheres (source), though the resources online referenced children objects for each face with separate mesh colliders. Significant refactoring allowed for a unified cube mesh object with tunable side length, and intricate meshes with more vertices and shorter edge lengths experienced more randomness. Additionally, we experimented with upsampling the meshes via Catmull-Clark subdivision on pre-existing mesh objects and Unity assets to create more intricate meshes and randomness in deformation, but this came with the issues of deforming materials and also introduced more complexity and lag when running the animation.
@@ -145,31 +145,31 @@ To add support for dynamic and multi-axis forces, we decided to introduce a forc
 ### Results:
 
 Barrel asset, standard downward force
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-5.png?raw=true)
 
 
 Soda can asset, after 1 iteration of Catmull-Clark subdivision - more realistic:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-6.png?raw=true)
 
 
 Soda can asset (default) - poor deformation:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-7.png?raw=true)
 
 
 Cube mesh with 50 vertices per side, mid-animation force direction change via WASD keys:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-8.png?raw=true)
 
 
 Cube mesh with 20 vertices per side:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-9.png?raw=true)
 
 
 Cube mesh with 10 vertices per side:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-10.png?raw=true)
 
 
 Default Unity cube - poor deformation:
-![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
+![dictionary](https://myxamediyar.github.io/cs184-finalproj/md-11.png?raw=true)
 
 
 
