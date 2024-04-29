@@ -127,7 +127,7 @@ Identical Vertex Group Mapping
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
 
 
-#### Identical Vertex Group Mapping
+#### <strong>Identical Vertex Group Mapping</strong>
 Unity stores a copy for each identical vector, so a random change in one would not be the same as in the other, forming gaps. To fix the gaps between the triangles that formed as a result of deformations, we coded up an API on top of Unity’s mesh structure to edit the vertices directly. We grouped all similar vertices together using a random index. The diagram below shows the mappings between Vertices’ indices and the random index values.
 
 ![dictionary](https://myxamediyar.github.io/cs184-finalproj/md10.png?raw=true)
