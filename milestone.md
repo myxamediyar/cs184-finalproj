@@ -7,7 +7,7 @@ layout: default
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
-<img src="https://myxamediyar.github.io/cs184-finalproj/md-1.png" alt="Description" width="300" height="300">
+<img src="https://myxamediyar.github.io/cs184-finalproj/md-1.png" alt="Description" height="300">
 
 [**Slides link**](https://docs.google.com/presentation/d/1dUNogIycKB2LvxmcyCh_iG_rNrrFzwdjxUTlK2wJFA4/edit?usp=sharing)
 
