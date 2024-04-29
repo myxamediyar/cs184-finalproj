@@ -1,5 +1,5 @@
 ---
-title: CS 184 Project Proposal
+title: CS 184 Project Writeup
 layout: default
 ---
 
