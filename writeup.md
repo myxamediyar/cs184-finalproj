@@ -122,7 +122,7 @@ Here we decided to use $f(x) = \frac{x}{\sqrt{c + x^2}}$ as the clamping functio
 
 As a side note, modifying this function can significantly change the behavior of the animation and achieve some interesting results. By using $f(x) = \sin(cx)$, we get this funny bobbing cube: 
 
-![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/gif-bob.fig?raw=true)
+![funny bobbing cube](https://myxamediyar.github.io/cs184-finalproj/gif-bob.gif?raw=true)
 
 #### <strong>Addressing Feedback Loop Errors:</strong>
 However, we quickly realized that this method made the animation look really jagged when combined with the deformation logic. The issue here was that the code made our clamped residuals be processed by the clamping function yet again, to only get enlarged by the applied forces. Any attempt to change the force starting values failed yet again. We realized that the root cause of the problem was that code workflow continually performed a feedback loop (see below), compressing and immediately enlarging the residual vectors in every frame, causing it to jitter:
