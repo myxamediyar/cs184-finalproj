@@ -1,5 +1,5 @@
 ---
-title: Project Milestone
+title: Ideation/Milestone
 layout: default
 ---
 
