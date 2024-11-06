@@ -3,7 +3,7 @@ title: Project Proposal
 layout: default
 ---
 
-# CrushFX: Soft body compression for crumple zone simulation
+# CrushFX: Soft-Body Compression & Mesh Deformation
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
