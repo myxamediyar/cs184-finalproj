@@ -1,5 +1,5 @@
 ---
-title: CS 184 Project Milestone Writeup
+title: Project Milestone Writeup
 layout: default
 ---
 
