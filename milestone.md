@@ -3,7 +3,7 @@ title: Project Milestone Writeup
 layout: default
 ---
 
-# CrushFX: Project Milestone Writeup
+# CrushFX: Soft-Body Compression & Mesh Deformation
 
 **Team members:** Rishi Khare, Mukhamediyar Kudaikulov, Aniketh Prasad, Alson Chan
 
