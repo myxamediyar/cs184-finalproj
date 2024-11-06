@@ -1,5 +1,5 @@
 ---
-title: CS 184 Project Proposal
+title: Project Proposal
 layout: default
 ---
 
