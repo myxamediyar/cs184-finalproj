@@ -1,5 +1,5 @@
 ---
-title: Project Milestone Writeup
+title: Project Milestone
 layout: default
 ---
 
