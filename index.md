@@ -1,5 +1,5 @@
 ---
-title: Project Proposal
+title: Proposal/Ideation
 layout: default
 ---
 
